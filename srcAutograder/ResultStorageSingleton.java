@@ -13,7 +13,7 @@ public class ResultStorageSingleton {
 	private int constructorCalls = 0;
 	private int methodCalls = 0;
 
-	private boolean exceptionThrown;
+	private int exceptionThrows;
 	
 	public String[][] testCases = new String[5][4];
 
@@ -52,16 +52,23 @@ public class ResultStorageSingleton {
 	/**
 	 * Return how often the classify method was called with parameter alpha < 0
 	 */
-	public boolean getExceptionThrown() {
-		return exceptionThrown;
+	public int getExceptionThrows() {
+		return exceptionThrows;
 	};
 
 
 	/**
 	 * Increment how often the classify method was called with parameter alpha < 0
 	 */
-	public void setExcetionThrown() {
-		exceptionThrown = true;
+	public void incrExceptionThrows() {
+		exceptionThrows++;
+	}
+	
+	public String[][] getTestCases() {
+		for(int i = 0; i < testCases.length; i++) {
+			testCases[i] = removeNulls(testCases[i]);
+		}
+		return testCases;
 	}
 	
 	public void addToTestCase(String s) {
