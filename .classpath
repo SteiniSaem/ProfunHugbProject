@@ -4,5 +4,6 @@
 	<classpathentry kind="src" path="srcAutograder"/>
 	<classpathentry kind="src" path="srcDummy"/>
 	<classpathentry kind="src" path="srcSubmission"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

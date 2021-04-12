@@ -10,9 +10,12 @@
 public class ResultStorageSingleton {
 	private static ResultStorageSingleton theInstance = null;
 
-	private int constructorCalls;
+	private int constructorCalls = 0;
+	private int methodCalls = 0;
 
 	private boolean exceptionThrown;
+	
+	public String[][] testCases = new String[5][4];
 
 	public static ResultStorageSingleton getInstance() {
 		if (theInstance == null) { // Lazy instantiation
@@ -36,8 +39,16 @@ public class ResultStorageSingleton {
 	 */
 	public void incrConstructorCalls() {
 		constructorCalls++;
+		methodCalls = 0;
 	}
-
+	public void incrMethodCalls() {
+		methodCalls++;
+	}
+	
+	public int getMethodCalls() {
+		return methodCalls;
+	}
+	
 	/**
 	 * Return how often the classify method was called with parameter alpha < 0
 	 */
@@ -51,5 +62,26 @@ public class ResultStorageSingleton {
 	 */
 	public void setExcetionThrown() {
 		exceptionThrown = true;
+	}
+	
+	public void addToTestCase(String s) {
+		testCases[constructorCalls-1][methodCalls] = s;
+		incrMethodCalls();
+	}
+	
+	public static String[] removeNulls(String[] array) {
+		int nullCount = 0;
+		for(int i = 0; i < array.length; i++) {
+			if(array[i] == null) {
+				nullCount++;
+			}
+		}
+		String[] copy = new String[array.length - nullCount];
+		for(int i = 0, j = 0; i < array.length; i++) {
+			if(array[i] != null) {
+				copy[j++] = array[i];
+			}
+		}
+		return copy;
 	}
 }

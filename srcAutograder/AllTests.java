@@ -4,7 +4,7 @@ import org.junit.runners.Suite.SuiteClasses;
 import org.junit.AfterClass;
 
 @RunWith(Suite.class)
-@SuiteClasses({ QuadrilateralNegativeTest.class, QuadrilateralPositiveTest.class })
+@SuiteClasses({ VendingMachineNegativeTest.class, VendingMachinePositiveTest.class })
 
 public class AllTests {
 	/**
@@ -15,9 +15,11 @@ public class AllTests {
 	@AfterClass
 	public static void afterClass() {
 		ResultStorageSingleton results = ResultStorageSingleton.getInstance();
-		System.out.println("Tested with parameter alpha == 0: " + results.getAlphaZero() + " times");
-		System.out.println("Tested with parameter alpha < 0: " + results.getAlphaLowerThanZero() + " times");
-		System.out.println("Tested with parameter yielding rectangle: " + results.getRectangle() + " times");
-		// TODO: @Helmut: Check that student test suite gives a green bar. (Could be done via, e.g., a TestListener)
+		for(int i = 0; i < results.testCases.length; i++) {
+			for(int j = 0; j < results.testCases[i].length; j++) {
+				System.out.println(results.testCases[i][j]);
+			}
+			System.out.println();
+		}
 	}
 }
