@@ -8,3 +8,7 @@
 /VendingMachine.class
 /CapacityExceededException.class
 /Bottle.class
+/CurrentlyCoinInsertedException.class
+/EmptyStockException.class
+/NegativeOrZeroParameterException.class
+/NoCoinInsertedException.class

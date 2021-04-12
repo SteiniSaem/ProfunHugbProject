@@ -10,11 +10,9 @@
 public class ResultStorageSingleton {
 	private static ResultStorageSingleton theInstance = null;
 
-	private int alphaZero;
+	private int constructorCalls;
 
-	private int alphaLowerThanZero;
-
-	private int rectangle;
+	private boolean exceptionThrown;
 
 	public static ResultStorageSingleton getInstance() {
 		if (theInstance == null) { // Lazy instantiation
@@ -29,45 +27,29 @@ public class ResultStorageSingleton {
 	/**
 	 * Return how often the classify method was called with parameter alpha == 0
 	 */
-	public int getAlphaZero() {
-		return alphaZero;
+	public int numOfConstuctorCalls() {
+		return constructorCalls;
 	}
 
 	/**
 	 * Increment how often the classify method was called with parameter alpha == 0
 	 */
-	public void incrAlphaZero() {
-		alphaZero++;
+	public void incrConstructorCalls() {
+		constructorCalls++;
 	}
 
 	/**
 	 * Return how often the classify method was called with parameter alpha < 0
 	 */
-	public int getAlphaLowerThanZero() {
-		return alphaLowerThanZero;
+	public boolean getExceptionThrown() {
+		return exceptionThrown;
 	};
 
 
 	/**
 	 * Increment how often the classify method was called with parameter alpha < 0
 	 */
-	public void incrAlphaLowerThanZero() {
-		alphaLowerThanZero++;
-	}
-
-
-	/**
-	 * Return how often the classify method was called with parameter yielding a rectangle
-	 */
-	public int getRectangle() {
-		return rectangle;
-	}
-
-	/**
-	 * Increment how often the classify method was called with parameter yielding a rectangle
-	 */
-	public void incrRectangle() {
-		rectangle++;
-		
+	public void setExcetionThrown() {
+		exceptionThrown = true;
 	}
 }
