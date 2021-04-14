@@ -19,15 +19,15 @@ public class AllTests {
 	public static void afterClass() {
 		ResultStorageSingleton results = ResultStorageSingleton.getInstance();
 		String[][] testCases = results.getTestCases();
+		String[][] correctAnswers = {{"new VendingMachine()", "refill(10)"}, {"new VendingMachine(1)", "refill(9)",}, {"new VendingMachine(1)", "insertCoin()", "requestBottle()"}, {"new VendingMachine(10)", "insertCoin()", "requestBottle()"}};
+
 		for(int i = 0; i < testCases.length; i++) {
 			for(int j = 0; j < testCases[i].length; j++) {
-				System.out.println(testCases[i][j]);
+				System.out.println(testCases[i][j] + "\t\t" + correctAnswers[i][j]);
 			}
 			System.out.println();
 		}
-		System.out.println("HHAAAALLLOOOOOO");
 			
-		String[][] correctAnswers = {{"new VendingMachine()", "refill(10)"}, {"new VendingMachine(1)", "coinInserted()", "requestBottle()"}, {"new VendingMachine(10)", "coinInserted()", "requestBottle()"}, {"new VendingMachine(1)", "refill(9)"}};
 		String[][] missingAnswers = new String[0][4];
 		String[][] temp;
 		for(int i = 0; i < correctAnswers.length; i++) {
@@ -40,13 +40,14 @@ public class AllTests {
 			}
 			if(!isIncluded) {
 				temp = new String[missingAnswers.length+1][4];
-				for(int j = 0; j < missingAnswers.length; j++) {
+				for(int j = 0; j < missingAnswers.length+100; j++) {
 					temp[i] = missingAnswers[i];
 				}
 				temp[missingAnswers.length] = correctAnswers[i];
 				missingAnswers = temp;
 			}
 		}
+		
 		System.out.println("Num of missing answers: " + missingAnswers.length);
 		int additional = testCases.length - 4 + missingAnswers.length;
 		System.out.println("Num of additional answers: " + additional);

@@ -68,7 +68,7 @@ public class ResultStorageSingleton {
 		for(int i = 0; i < testCases.length; i++) {
 			testCases[i] = removeNulls(testCases[i]);
 		}
-		return testCases;
+		return removeLastIfEmpty(testCases);
 	}
 	
 	public void addToTestCase(String s) {
@@ -76,7 +76,7 @@ public class ResultStorageSingleton {
 		incrMethodCalls();
 	}
 	
-	public static String[] removeNulls(String[] array) {
+	public String[] removeNulls(String[] array) {
 		int nullCount = 0;
 		for(int i = 0; i < array.length; i++) {
 			if(array[i] == null) {
@@ -91,4 +91,27 @@ public class ResultStorageSingleton {
 		}
 		return copy;
 	}
+	
+	public String[][] removeLastIfEmpty(String[][] array) {
+		if(array[array.length-1].length == 0) {
+			String[][] copy = new String[array.length-1][4];
+			for(int i = 0; i < copy.length; i++) {
+				for(int j = 0; j < array[i].length; j++) {
+					copy[i][j] = array[i][j];
+				}
+				copy[i] = removeNulls(copy[i]);
+			}
+			/*for(int i = 0; i < copy.length; i++) {
+				for(int j = 0; j < array[i].length; j++) {
+					System.out.println(copy[i][j]);
+				}
+				System.out.println();
+			}*/
+			return copy;
+		}
+		System.out.println("ass");
+		return array;
+	}
+	
+	
 }

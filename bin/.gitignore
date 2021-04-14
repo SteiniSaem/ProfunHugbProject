@@ -1,1 +1,13 @@
+/AllTests.class
+/CapacityExceededException.class
+/CurrentlyCoinInsertedException.class
+/EmptyStockException.class
+/InvalidParameterException.class
+/NegativeOrZeroParameterException.class
+/NoCoinInsertedException.class
+/Quadrilateral.class
+/QuadrilateralType.class
+/ResultStorageSingleton.class
+/VendingMachine.class
 /VendingMachineNegativeTest.class
+/VendingMachinePositiveTest.class
