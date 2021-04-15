@@ -15,7 +15,7 @@ public class ResultStorageSingleton {
 
 	private int exceptionThrows;
 	
-	public String[][] testCases = new String[5][4];
+	public String[][] testCases = new String[6][4];
 
 	public static ResultStorageSingleton getInstance() {
 		if (theInstance == null) { // Lazy instantiation
@@ -27,16 +27,11 @@ public class ResultStorageSingleton {
 	protected ResultStorageSingleton() { // Class may not be instantiated by others
 	};
 
-	/**
-	 * Return how often the classify method was called with parameter alpha == 0
-	 */
+
 	public int numOfConstuctorCalls() {
 		return constructorCalls;
 	}
 
-	/**
-	 * Increment how often the classify method was called with parameter alpha == 0
-	 */
 	public void incrConstructorCalls() {
 		constructorCalls++;
 		methodCalls = 0;
@@ -49,17 +44,11 @@ public class ResultStorageSingleton {
 		return methodCalls;
 	}
 	
-	/**
-	 * Return how often the classify method was called with parameter alpha < 0
-	 */
 	public int getExceptionThrows() {
 		return exceptionThrows;
 	};
 
 
-	/**
-	 * Increment how often the classify method was called with parameter alpha < 0
-	 */
 	public void incrExceptionThrows() {
 		exceptionThrows++;
 	}
@@ -68,7 +57,7 @@ public class ResultStorageSingleton {
 		for(int i = 0; i < testCases.length; i++) {
 			testCases[i] = removeNulls(testCases[i]);
 		}
-		return removeLastIfEmpty(testCases);
+		return removeEmpty(testCases);
 	}
 	
 	public void addToTestCase(String s) {
@@ -92,8 +81,8 @@ public class ResultStorageSingleton {
 		return copy;
 	}
 	
-	public String[][] removeLastIfEmpty(String[][] array) {
-		if(array[array.length-1].length == 0) {
+	public String[][] removeEmpty(String[][] array) {
+		while(array[array.length-1].length == 0) {
 			String[][] copy = new String[array.length-1][4];
 			for(int i = 0; i < copy.length; i++) {
 				for(int j = 0; j < array[i].length; j++) {
@@ -107,9 +96,8 @@ public class ResultStorageSingleton {
 				}
 				System.out.println();
 			}*/
-			return copy;
+			array = copy;
 		}
-		System.out.println("ass");
 		return array;
 	}
 	

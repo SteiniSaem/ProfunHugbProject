@@ -10,6 +10,12 @@ public class VendingMachinePositiveTest {
 	public void setUp() {
 		vm = new VendingMachine();
 	}*/
+	
+	@Test
+	public void extraTest() {
+		vm = new VendingMachine();
+		assertTrue(vm.isEmpty());
+	}
 
 	@Test
 	public void TC1() {
@@ -44,6 +50,7 @@ public class VendingMachinePositiveTest {
 		vm.insertCoin();
 		assertTrue(vm.isCoinInserted());
 		vm.requestBottle();
+		assertEquals(9, vm.getStock());
 		assertFalse(vm.isFull());
 		assertFalse(vm.isEmpty());
 	}

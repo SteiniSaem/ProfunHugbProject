@@ -1,4 +1,5 @@
 import org.junit.runner.RunWith;
+
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
@@ -6,8 +7,9 @@ import java.util.Arrays;
 
 import org.junit.AfterClass;
 
+
 @RunWith(Suite.class)
-@SuiteClasses({ VendingMachinePositiveTest.class })
+@SuiteClasses({VendingMachinePositiveTest.class, VendingMachineNegativeTest.class})
 
 public class AllTests {
 	/**
@@ -20,18 +22,20 @@ public class AllTests {
 		ResultStorageSingleton results = ResultStorageSingleton.getInstance();
 		String[][] testCases = results.getTestCases();
 		String[][] correctAnswers = {{"new VendingMachine()", "refill(10)"}, {"new VendingMachine(1)", "refill(9)",}, {"new VendingMachine(1)", "insertCoin()", "requestBottle()"}, {"new VendingMachine(10)", "insertCoin()", "requestBottle()"}};
-
+		System.out.println("Test cases submitted:\n");
 		for(int i = 0; i < testCases.length; i++) {
 			for(int j = 0; j < testCases[i].length; j++) {
-				System.out.println(testCases[i][j] + "\t\t" + correctAnswers[i][j]);
+				System.out.println(testCases[i][j]);
 			}
 			System.out.println();
 		}
 			
-		String[][] missingAnswers = new String[0][4];
-		String[][] temp;
+		String[][] missingAnswers = new String[5][4];
+
+		int numOfMissingAnswers = 0;
 		for(int i = 0; i < correctAnswers.length; i++) {
 			boolean isIncluded = false;
+			//System.out.println(i);
 			for(int j = 0; j < testCases.length; j++) {
 				if(Arrays.equals(correctAnswers[i], testCases[j])) {
 					isIncluded = true;
@@ -39,21 +43,25 @@ public class AllTests {
 				}
 			}
 			if(!isIncluded) {
-				temp = new String[missingAnswers.length+1][4];
-				for(int j = 0; j < missingAnswers.length+100; j++) {
-					temp[i] = missingAnswers[i];
-				}
-				temp[missingAnswers.length] = correctAnswers[i];
-				missingAnswers = temp;
+				missingAnswers[numOfMissingAnswers] = correctAnswers[i];
+				numOfMissingAnswers++;
 			}
 		}
 		
-		System.out.println("Num of missing answers: " + missingAnswers.length);
-		int additional = testCases.length - 4 + missingAnswers.length;
+		if(results.getExceptionThrows() == 0) {
+			numOfMissingAnswers++;
+		}
+		
+		System.out.println("Num of missing answers: " + numOfMissingAnswers);
+		int additional = testCases.length - 5 + numOfMissingAnswers;
 		System.out.println("Num of additional answers: " + additional);
+		System.out.println("Num of exception throws: " + results.getExceptionThrows());
+		System.out.println("Missing Answers:\n");
 		for(int i = 0; i < missingAnswers.length; i++) {
 			for(int j = 0; j < missingAnswers[i].length; j++) {
-				System.out.println(missingAnswers[i][j]);
+				if(missingAnswers[i][j] != null) {
+					System.out.println(missingAnswers[i][j]);
+				}
 			}
 			System.out.println();
 		}
