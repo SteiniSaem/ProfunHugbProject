@@ -35,7 +35,6 @@ public class AllTests {
 		int numOfMissingAnswers = 0;
 		for(int i = 0; i < correctAnswers.length; i++) {
 			boolean isIncluded = false;
-			//System.out.println(i);
 			for(int j = 0; j < testCases.length; j++) {
 				if(Arrays.equals(correctAnswers[i], testCases[j])) {
 					isIncluded = true;
@@ -57,6 +56,10 @@ public class AllTests {
 		System.out.println("Num of additional answers: " + additional);
 		System.out.println("Num of exception throws: " + results.getExceptionThrows());
 		System.out.println("Missing Answers:\n");
+		if (results.getExceptionThrows() == 0) {
+			System.out.println("A concrete negative test case is missing!");
+			System.out.println();
+		}
 		for(int i = 0; i < missingAnswers.length; i++) {
 			for(int j = 0; j < missingAnswers[i].length; j++) {
 				if(missingAnswers[i][j] != null) {
@@ -65,5 +68,6 @@ public class AllTests {
 			}
 			System.out.println();
 		}
+		
 	}
 }
