@@ -15,7 +15,7 @@ public class ResultStorageSingleton {
 
 	private int exceptionThrows;
 	
-	public String[][] testCases = new String[6][4];
+	public String[][] testCases = new String[8][4];
 
 	public static ResultStorageSingleton getInstance() {
 		if (theInstance == null) { // Lazy instantiation

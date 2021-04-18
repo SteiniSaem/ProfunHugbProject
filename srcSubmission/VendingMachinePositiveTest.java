@@ -16,6 +16,12 @@ public class VendingMachinePositiveTest {
 		vm = new VendingMachine();
 		assertTrue(vm.isEmpty());
 	}
+	
+	@Test
+	public void anotherExtraTest() {
+		vm = new VendingMachine(4);
+		assertFalse(vm.isEmpty());
+	}
 
 	@Test
 	public void TC1() {
