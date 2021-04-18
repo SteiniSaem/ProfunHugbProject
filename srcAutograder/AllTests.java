@@ -22,6 +22,7 @@ public class AllTests {
 		ResultStorageSingleton results = ResultStorageSingleton.getInstance();
 		String[][] testCases = results.getTestCases();
 		String[][] correctAnswers = {{"new VendingMachine()", "refill(10)"}, {"new VendingMachine(1)", "refill(9)",}, {"new VendingMachine(1)", "insertCoin()", "requestBottle()"}, {"new VendingMachine(10)", "insertCoin()", "requestBottle()"}};
+		System.out.println("--------------------------------------------");
 		System.out.println("Test cases submitted:\n");
 		for(int i = 0; i < testCases.length; i++) {
 			for(int j = 0; j < testCases[i].length; j++) {
@@ -29,6 +30,7 @@ public class AllTests {
 			}
 			System.out.println();
 		}
+		System.out.println("--------------------------------------------");
 			
 		String[][] missingAnswers = new String[5][4];
 
@@ -55,6 +57,7 @@ public class AllTests {
 		int additional = testCases.length - 5 + numOfMissingAnswers;
 		System.out.println("Num of additional answers: " + additional);
 		System.out.println("Num of exception throws: " + results.getExceptionThrows());
+		System.out.println("--------------------------------------------");
 		System.out.println("Missing Answers:\n");
 		if (results.getExceptionThrows() == 0) {
 			System.out.println("A concrete negative test case is missing!");
